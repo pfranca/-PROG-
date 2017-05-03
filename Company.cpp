@@ -3,6 +3,8 @@
 
 Company::Company(string nome, string fichCondutores, string fichLinhas){
 	this->nome = nome;
+	//lines.resize(0);
+	//drivers.resize(0);
 	ifstream ficheirocondutores(fichCondutores);
 	if (ficheirocondutores.is_open())
 	{
@@ -35,18 +37,20 @@ Company::Company(string nome, string fichCondutores, string fichLinhas){
 	ifstream ficheirolinhas(fichLinhas);
 	if (ficheirolinhas.is_open())
 	{
-		Line newLine;
+		//Line* newLine = new Line;
 
 		char lixo;
 		string paragens;
 		string paragemnome;
+		string auxtempo;
 		int tempo;
 		int auxint;
 		string auxstr;
 		while (!ficheirolinhas.eof())
 		{	
-			newLine.clearStop();//limpa os vetores
-			newLine.clearTimes();
+			Line newLine;
+			//newLine->clearStop();//limpa os vetores
+			//newLine->clearTimes();
 			ficheirolinhas >> auxint;
 			newLine.setId(auxint);
 			ficheirolinhas >> lixo;
@@ -76,9 +80,13 @@ Company::Company(string nome, string fichCondutores, string fichLinhas){
 				ficheirolinhas >> lixo;
 			}
 			//string auxiliar2;
-			ficheirolinhas >> tempo;
-			newLine.setTime(tempo);
+			//ficheirolinhas >> tempo;
+			getline(ficheirolinhas, auxtempo);//para ele ler eof()
+			//int auxint = stoi(auxtempo);
+			newLine.setTime(stoi(auxtempo));
+			//if (ficheirolinhas.eof()) break;
 			lines.push_back(newLine);
+			//if (ficheirolinhas.eof()) break;
 		}
 
 		ficheirolinhas.close();
@@ -105,11 +113,11 @@ string Company::getNome() const{
 void Company::displayDrivers() {
 	for (int i = 0;i < drivers.size();i++)
 	{
-		cout << "ID: " << drivers[i].getId() << "; ";
-		cout << "Name: " << drivers[i].getName() << ";" << endl;
-		cout << "Turno: " << drivers[i].getShiftMaxDuration() << ";" << endl;
-		cout << "Max Horas Semana : " << drivers[i].getMaxWeekWorkingTime() << ";" << endl;
-		cout << "Descanso entre turnos : " << drivers[i].getMinRestTime() << ";" << endl;
+		cout << "ID:" << drivers[i].getId() << "  ";
+		cout << "Name:" << drivers[i].getName() << endl;
+		cout << "Turno: " << drivers[i].getShiftMaxDuration() << endl;
+		cout << "Max Horas Semana : " << drivers[i].getMaxWeekWorkingTime() << endl;
+		cout << "Descanso entre turnos : " << drivers[i].getMinRestTime() << endl;
 		cout << "-----------------------------------------------------------------------" << endl;
 	}
 }
