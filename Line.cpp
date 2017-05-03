@@ -1,12 +1,22 @@
 #include "Line.h"
 
 
-Line::Line(string textLIne){
-
-  // INITIALISATION CODE GOES IN HERE
-  
+Line::Line(){
 
 }
+
+void Line::setId(unsigned int id) {
+	this->id = id;
+}
+
+void Line::setStop(string stop) {
+	busStopList.push_back(stop);
+}
+
+void Line::setTime(int time) {
+	timesList.push_back(time);
+}
+
 
 ////////////////
 // get methods

@@ -14,12 +14,16 @@ class Line{
   vector<string> busStopList;
   vector<int> timesList;
  public:
-  Line(string textLine);
+  Line();
+ // Line();
   // metodos get
   unsigned int getId() const;
   vector<string> getBusStops() const;
   vector<int> getTimings() const;
   // set methods
+  void setId(unsigned int);
+  void setStop(string);
+  void setTime(int);
   // other methods
 
 };
