@@ -23,7 +23,6 @@ class Company{
   string getNome() const;
   // metodos set
   //outros metodos
-  void readFiles(string nome);
   void displayDrivers();
   void displayLines();
   void distribuiServico(); // funcao que implementa a afectacao de servico
