@@ -36,6 +36,7 @@ Company::Company(string nome, string fichCondutores, string fichLinhas){
 	if (ficheirolinhas.is_open())
 	{
 		Line newLine;
+
 		char lixo;
 		string paragens;
 		string paragemnome;
@@ -43,7 +44,9 @@ Company::Company(string nome, string fichCondutores, string fichLinhas){
 		int auxint;
 		string auxstr;
 		while (!ficheirolinhas.eof())
-		{
+		{	
+			newLine.clearStop();//limpa os vetores
+			newLine.clearTimes();
 			ficheirolinhas >> auxint;
 			newLine.setId(auxint);
 			ficheirolinhas >> lixo;
@@ -72,7 +75,7 @@ Company::Company(string nome, string fichCondutores, string fichLinhas){
 				newLine.setTime(tempo);
 				ficheirolinhas >> lixo;
 			}
-			string auxiliar2;
+			//string auxiliar2;
 			ficheirolinhas >> tempo;
 			newLine.setTime(tempo);
 			lines.push_back(newLine);
@@ -121,6 +124,7 @@ void Company::displayLines() {
 			if (j != 0) cout << " || ";
 			cout << lines[i].getBusStops()[j];
 		}
+		cout << endl;
 	}
 }
 
