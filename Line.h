@@ -28,5 +28,7 @@ class Line{
   void setStop(string);
   void setTime(int);
   // other methods
+  void clearStop();
+  void clearTimes();
 
 };

@@ -41,3 +41,11 @@ vector<string> Line::getBusStops() const{
 vector<int> Line::getTimings() const{
   return timesList;
 }
+
+void Line::clearStop() {
+	busStopList.resize(0);
+}
+
+void Line::clearTimes() {
+	timesList.resize(0);
+}
