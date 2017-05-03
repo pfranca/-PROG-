@@ -9,6 +9,10 @@ void Line::setId(unsigned int id) {
 	this->id = id;
 }
 
+void Line::setFreq(unsigned int freq) {
+	this->freq = freq;
+}
+
 void Line::setStop(string stop) {
 	busStopList.push_back(stop);
 }
@@ -24,6 +28,10 @@ void Line::setTime(int time) {
 
 unsigned int Line::getId() const{
   return id;
+}
+
+unsigned int Line::getFreq() const {
+	return freq;
 }
 
 vector<string> Line::getBusStops() const{
