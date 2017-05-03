@@ -7,6 +7,7 @@
 
 #include "Line.h"
 #include "Driver.h"
+#include <fstream>
 
 
 using namespace std;
@@ -21,7 +22,8 @@ class Company{
   // metodos get
   string getNome() const;
   // metodos set
-  // outros metodos
+  //outros metodos
+  void readFiles(string nome);
   void displayDrivers();
   void displayLines();
   void distribuiServico(); // funcao que implementa a afectacao de servico

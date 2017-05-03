@@ -16,9 +16,85 @@ string Company::getNome() const{
 // metodos set
 /////////////////////////////
 
+
 ////////////////////////////
 // outros metodos
 ///////////////////////////
+void readFiles(string nome) {
+	ifstream ficheirocondutores(nome + "condutores");
+	if (ficheirocondutores.is_open())
+	{	
+		Driver newDriver();
+		char lixo;
+		while (!ficheirocondutores.eof())
+		{
+			ficheirocondutores >> ncon.id;
+			ficheirocondutores >> lixo;
+			getline(ficheirocondutores, ncon.nome, ';');
+			ficheirocondutores >> ncon.turno;
+			ficheirocondutores >> lixo;
+			ficheirocondutores >> ncon.maxHorasSemana;
+			ficheirocondutores >> lixo;
+			//string auxiliar; //por causo do problema da ultima linah do ficheiro em branco
+			ficheirocondutores >> ncon.minHorasDescanso;
+			condutores.push_back(ncon);
+		}
+
+		ficheirocondutores.close();
+	}
+	else cout << "Unable to open file!";
+
+	ifstream ficheirolinhas(nome + "linhas");
+	if (ficheirolinhas.is_open())
+	{
+		Linha nlinha;
+		char lixo;
+		string paragens;
+		string paragemnome;
+		int tempo;
+		while (!ficheirolinhas.eof())
+		{
+			nlinha.paragens.resize(0);
+			nlinha.tempos.resize(0);
+			ficheirolinhas >> nlinha.id;
+			ficheirolinhas >> lixo;
+			ficheirolinhas >> nlinha.freq;
+			ficheirolinhas >> lixo;
+			getline(ficheirolinhas, paragens, ';');
+			int nrparagens = 0;
+			paragens = paragens + ",";
+			int pos = paragens.find(",");
+			size_t aux = pos + 1;
+			int i = 1;
+			do {
+				paragemnome = paragens.substr(i, pos - i);
+				nlinha.paragens.push_back(paragemnome);
+				nrparagens++;
+				aux = pos + 1;
+				i = pos + 2;
+				pos = paragens.find(",", aux);
+
+			} while (!(paragens.find(",", aux) == string::npos));
+
+			for (int i = 0; i < nrparagens - 2; i++)
+			{
+				ficheirolinhas >> tempo;
+				nlinha.tempos.push_back(tempo);
+				ficheirolinhas >> lixo;
+			}
+			string auxiliar2;
+			ficheirolinhas >> tempo;
+			nlinha.tempos.push_back(tempo);
+			linhas.push_back(nlinha);
+		}
+
+		ficheirolinhas.close();
+	}
+	else cout << "Unable to open file!";
+}
+}
+
+
 void Company::displayDrivers() {
 	for (int i = 0;i < drivers.size();i++)
 	{

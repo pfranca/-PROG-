@@ -1,10 +1,36 @@
 #include "Driver.h"
 
-Driver::Driver(string textLine){
 
-  // INITIALISATION CODE GOES IN HERE
+Driver::Driver() {
+
+}
+
+Driver::Driver(int id, string name, int maxHours, int maxWeekWorkingTime, int minRestTime) {
+
+	this->id = id;
+	this->name = name;
+	this->maxHours = maxHours;
+	this->maxWeekWorkingTime = maxWeekWorkingTime;
+	this->minRestTime = minRestTime;
   
 }
+
+void Driver::setId(int id) {
+	this->id = id;
+}
+void Driver::setName(string name) {
+	this->name = name;
+}
+void Driver::setMaxHours(int maxHours) {
+	this->maxHours = maxHours;
+}
+void Driver::setMaxWeekWorkingTime(int maxWeekWorkingTime) {
+	this->maxWeekWorkingTime = maxWeekWorkingTime;
+}
+void Driver::setMinRestTime(int minRestTime) {
+	this->minRestTime = minRestTime;
+}
+
 
 //////////////
 // get methods
